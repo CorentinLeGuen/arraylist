@@ -1,4 +1,4 @@
-package _interface
+package arraylist
 
 import (
 	"testing"

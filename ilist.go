@@ -1,5 +1,4 @@
-package _interface
-
+package arraylist
 
 type List struct {
 	elems []interface{}

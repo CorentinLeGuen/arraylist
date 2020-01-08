@@ -10,7 +10,7 @@ Don't hesitate to send me an email (leguen.corentin@protonmail.com) or contribut
 
 `go get github.com/colegno/arraylist/string` for the string arraylist.
 
-You can also use _github.com/colegno/arraylist/interface_ for your custom structs.
+You can also use _github.com/colegno/arraylist_ for your custom structs.
 
 ## How to use
 
@@ -48,17 +48,17 @@ func main() {
 	s.Add("titi")
 	s.Add("toto")
 	s.Add("tutu")
-	s.Add("toto")
-	fmt.Printf("%t\n", s.Contains("tata")) // false
-	fmt.Printf("%t\n", s.Contains("toto")) // true
-	s.RemoveFirst("toto")
-	fmt.Printf("%t\n", s.Contains("toto")) // true
-	s.RemoveAll("toto")
-	fmt.Printf("%t\n", s.Contains("toto")) // false
-	fmt.Printf("%d\n", s.Len()) // 2
-	s.AddAll([]string{"toto", "tata"})
-	fmt.Printf("%t\n", s.Contains("tata")) // true
-	fmt.Printf("%d\n", s.GetPosition("tutu")) // 1
-	fmt.Printf("%s\n", s.GetValue(2)) // "toto"
+	s.Add("toto")                               // add five strings to the arraylist
+	fmt.Printf("%t\n", s.Contains("tata"))      // false
+	fmt.Printf("%t\n", s.Contains("toto"))      // true
+	s.RemoveFirst("toto")                       // we are removing the first "toto"
+	fmt.Printf("%t\n", s.Contains("toto"))      // true
+	s.RemoveAll("toto")                         // we are removing every "toto"
+	fmt.Printf("%t\n", s.Contains("toto"))      // false
+	fmt.Printf("%d\n", s.Len())                 // 2 there is only ["titi", "tutu"] in the arraylist
+	s.AddAll([]string{"toto", "tata"})          // adding at the end of the arraylist
+	fmt.Printf("%t\n", s.Contains("tata"))      // true
+	fmt.Printf("%d\n", s.GetPosition("tutu"))   // 1
+	fmt.Printf("%s\n", s.GetValue(2))           // "toto"
 }
 ```
