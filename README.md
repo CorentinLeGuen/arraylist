@@ -23,12 +23,15 @@ To create a new arraylist : `New() *List`
 | Signature | Description |
 |-----------|-------------|
 | Len() int | Return the length of the arraylist |
-| GetPosition(elem <string/int/interface{}>) int | Return the position of _elem_ in the arraylist |
+| Clear() | Empty the arraylist |
+| Clone() *List | Return a copy of the arraylist |
+| IndexOf(elem <string/int/interface{}>) int | Return the position of _elem_ in the arraylist |
 | GetValue(position int) <string/int/interface{}> | Return the value at the position _position_ |
 | Contains(elem <string/int/interface{}>) bool | Show if the value _elem_ is in the arraylist |
 | Add(elem <string/int/interface{}>) | Add _elem_ to the tail of the arraylist |
 | AddAll(elems []<string/int/interface{}>) | Add all _elems_ to the tail of the arraylist |
 | RemoveFirst(elem <string/int/interface{}>) | Remove the first occurence of _elem_ from the arraylist |
+| RemoveAtIndex(index int) | Remove the item at the position _index_ |
 | RemoveAll(elem <string/int/interface{}>) | Remove all occurences of _elem_ from the arraylist |
 | ToArray() []<string/int/interface{}> | Return the arraylist as an array |
 

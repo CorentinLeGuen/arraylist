@@ -14,7 +14,19 @@ func (l *List) Len() int {
 	return len(l.elems)
 }
 
-func (l *List) GetPosition(elem interface{}) int {
+func (l *List) Clear() {
+	l.elems = []interface{}{}
+}
+
+func (l *List) Clone() *List {
+	n := New()
+	for _, v := range l.elems {
+		n.elems = append(n.elems, v)
+	}
+	return n
+}
+
+func (l *List) IndexOf(elem interface{}) int {
 	for k, v := range l.elems {
 		if v == elem {
 			return k
@@ -49,6 +61,17 @@ func (l *List) AddAll(elems []interface{}) {
 func (l *List) RemoveFirst(elem interface{}) {
 	for i, val := range l.elems {
 		if val == elem {
+			newArray := l.elems[:i]
+			newArray = append(newArray, l.elems[i+1:]...)
+			l.elems = newArray
+			return
+		}
+	}
+}
+
+func (l *List) RemoveAtIndex(index int) {
+	for i, _ := range l.elems {
+		if i == index {
 			newArray := l.elems[:i]
 			newArray = append(newArray, l.elems[i+1:]...)
 			l.elems = newArray
