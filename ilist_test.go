@@ -191,3 +191,29 @@ func TestList_ToArray(t *testing.T) {
 		}
 	}
 }
+
+func TestList_Equals(t *testing.T) {
+	l1 := New()
+	l1.Add(1)
+	if !l1.Equals(l1) {
+		t.Fail()
+	}
+	l2 := New()
+	l2.Add(1)
+	if !l1.Equals(l2) {
+		t.Fail()
+	}
+	l1.Add(2)
+	if l1.Equals(l2) {
+		t.Fail()
+	}
+	l2.Add(2)
+	if !l1.Equals(l2) {
+		t.Fail()
+	}
+	l1.Add(3)
+	l2.Add(4)
+	if l1.Equals(l2) {
+		t.Fail()
+	}
+}

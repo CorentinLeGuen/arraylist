@@ -89,3 +89,18 @@ func (l *List) RemoveAll(elem interface{}) {
 func (l *List) ToArray() []interface{} {
 	return l.elems
 }
+
+func (l *List) Equals(o *List) bool {
+	if l == o {
+		return true
+	}
+	if l.Len() != o.Len() {
+		return false
+	}
+	for k, _ := range l.elems {
+		if l.elems[k] != o.elems[k] {
+			return false
+		}
+	}
+	return true
+}
