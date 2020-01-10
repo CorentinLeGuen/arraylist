@@ -6,6 +6,8 @@ Don't hesitate to send me an email (leguen.corentin@protonmail.com) or contribut
 
 ## Go Get
 
+:construction: Presently under construction
+
 ## How to use
 
 ### Constructor
@@ -39,7 +41,7 @@ package main
 
 import (
 	"fmt"
-	arrayList "github.com/colegno/arraylist/string"
+	arrayList "github.com/colegno/arraylist"
 )
 
 func main() {
@@ -56,9 +58,15 @@ func main() {
 	s.RemoveAll("toto")                         // we are removing every "toto"
 	fmt.Printf("%t\n", s.Contains("toto"))      // false
 	fmt.Printf("%d\n", s.Len())                 // 2 there is only ["titi", "tutu"] in the arraylist
-	s.AddAll([]string{"toto", "tata"})          // adding at the end of the arraylist
+	s.AddAll([]interface{}{"toto", "tata"})          // adding at the end of the arraylist
 	fmt.Printf("%t\n", s.Contains("tata"))      // true
 	fmt.Printf("%d\n", s.GetPosition("tutu"))   // 1
 	fmt.Printf("%s\n", s.GetValue(2))           // "toto"
 }
 ```
+
+You can take a look at [tests files](ilist_test.go) for more examples.
+
+## Todo
+
+- Update the README with *go get* and example import
