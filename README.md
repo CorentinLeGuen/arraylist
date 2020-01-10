@@ -6,12 +6,6 @@ Don't hesitate to send me an email (leguen.corentin@protonmail.com) or contribut
 
 ## Go Get
 
-`go get github.com/colegno/arraylist/int` for the int arraylist.
-
-`go get github.com/colegno/arraylist/string` for the string arraylist.
-
-You can also use _github.com/colegno/arraylist_ for your custom structs.
-
 ## How to use
 
 ### Constructor
@@ -25,15 +19,17 @@ To create a new arraylist : `New() *List`
 | Len() int | Return the length of the arraylist |
 | Clear() | Empty the arraylist |
 | Clone() *List | Return a copy of the arraylist |
-| IndexOf(elem <string/int/interface{}>) int | Return the position of _elem_ in the arraylist |
-| GetValue(position int) <string/int/interface{}> | Return the value at the position _position_ |
-| Contains(elem <string/int/interface{}>) bool | Show if the value _elem_ is in the arraylist |
-| Add(elem <string/int/interface{}>) | Add _elem_ to the tail of the arraylist |
-| AddAll(elems []<string/int/interface{}>) | Add all _elems_ to the tail of the arraylist |
-| RemoveFirst(elem <string/int/interface{}>) | Remove the first occurence of _elem_ from the arraylist |
+| IndexOf(elem interface{}) int | Return the position of _elem_ in the arraylist |
+| GetValue(position int) interface{} | Return the value at the position _position_ |
+| Contains(elem interface{}) bool | Show if the value _elem_ is in the arraylist |
+| Add(elem interface{}) | Add _elem_ to the tail of the arraylist |
+| AddAll(elems []interface{}) | Add all _elems_ to the tail of the arraylist |
+| ReplaceAll(fromElem interface{}, toElem interface{}) | Replace all occurrences of an element by another one | 
+| RemoveFirst(elem interface{}) | Remove the first occurrence of _elem_ from the arraylist |
 | RemoveAtIndex(index int) | Remove the item at the position _index_ |
-| RemoveAll(elem <string/int/interface{}>) | Remove all occurences of _elem_ from the arraylist |
-| ToArray() []<string/int/interface{}> | Return the arraylist as an array |
+| RemoveAll(elem interface{}) | Remove all occurrences of _elem_ from the arraylist |
+| ToArray() []interface{} | Return the arraylist as an array |
+| Equals(o *List) bool | Compare two arraylist |
 
 ## Example
 

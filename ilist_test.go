@@ -7,7 +7,7 @@ import (
 func TestNew(t *testing.T) {
 	t.Log("Simple new object")
 	l := New()
-	if l.elems == nil || l.Len() != 0 {
+	if l.objects == nil || l.Len() != 0 {
 		t.Fail()
 	}
 }
@@ -109,7 +109,7 @@ func TestList_Add(t *testing.T) {
 	l.Add("1")
 	l.Add(2)
 	l.Add('*')
-	if len(l.elems) != 3 {
+	if len(l.objects) != 3 {
 		t.Fail()
 	}
 }
@@ -122,7 +122,7 @@ func TestList_AddAll(t *testing.T) {
 	s = append(s, '*')
 	l := New()
 	l.AddAll(s)
-	if len(l.elems) != 3 {
+	if len(l.objects) != 3 {
 		t.Fail()
 	}
 }
@@ -132,7 +132,7 @@ func TestList_AddAll2(t *testing.T) {
 	var s []interface{}
 	l := New()
 	l.AddAll(s)
-	if len(l.elems) != 0 {
+	if len(l.objects) != 0 {
 		t.Fail()
 	}
 }
@@ -195,6 +195,7 @@ func TestList_ToArray(t *testing.T) {
 }
 
 func TestList_Equals(t *testing.T) {
+	t.Log("Test equals over arraylists")
 	l1 := New()
 	l1.Add(1)
 	if !l1.Equals(l1) {
@@ -221,6 +222,7 @@ func TestList_Equals(t *testing.T) {
 }
 
 func TestList_RemoveAll_With_OutOfBound(t *testing.T) {
+	t.Log("Test the out of bound of RemoveAll method")
 	l := New()
 	l.Add("A")
 	l.Add("B")
@@ -251,6 +253,7 @@ func TestList_RemoveAll_With_OutOfBound(t *testing.T) {
 }
 
 func TestList_RemoveAll_OnlyOneObject(t *testing.T) {
+	t.Log("RemoveAll from arraylist but arraylist contains only one kind of item")
 	l := New()
 	l.Add("X")
 	l.Add("X")
@@ -270,6 +273,7 @@ func TestList_RemoveAll_OnlyOneObject(t *testing.T) {
 }
 
 func TestList_OutOfBound(t *testing.T) {
+	t.Log("Testing the out of bound of methods IndexOf and GetValue")
 	l := New()
 	l.Add(1)
 	l.Add("2")
@@ -290,6 +294,7 @@ func TestList_OutOfBound(t *testing.T) {
 }
 
 func TestList_ReplaceAll(t *testing.T) {
+	t.Log("Replacing all occurrences of an object by another one")
 	l := New()
 	l.Add("A")
 	l.Add("C")

@@ -2,38 +2,38 @@ package arraylist
 
 // The list structure where you can put anything
 type List struct {
-	elems []interface{}
+	objects []interface{}
 }
 
 // Return a new empty list
 func New() *List {
 	l := new(List)
-	l.elems = []interface{}{}
+	l.objects = []interface{}{}
 	return l
 }
 
 // Length of the list
 func (l *List) Len() int {
-	return len(l.elems)
+	return len(l.objects)
 }
 
 // Empty the list
 func (l *List) Clear() {
-	l.elems = []interface{}{}
+	l.objects = []interface{}{}
 }
 
 // Duplicate the list
 func (l *List) Clone() *List {
 	n := New()
-	for _, v := range l.elems {
-		n.elems = append(n.elems, v)
+	for _, v := range l.objects {
+		n.objects = append(n.objects, v)
 	}
 	return n
 }
 
 // Return the index of the first elem find in the arraylist or return -1
 func (l *List) IndexOf(elem interface{}) int {
-	for k, v := range l.elems {
+	for k, v := range l.objects {
 		if v == elem {
 			return k
 		}
@@ -46,12 +46,12 @@ func (l *List) GetValue(pos int) interface{} {
 	if pos < 0 || pos > l.Len() -1 {
 		return nil
 	}
-	return l.elems[pos]
+	return l.objects[pos]
 }
 
 // Indicates if the arraylist contains an element
 func (l *List) Contains(elem interface{}) bool {
-	for _, v := range l.elems {
+	for _, v := range l.objects {
 		if v == elem {
 			return true
 		}
@@ -61,7 +61,7 @@ func (l *List) Contains(elem interface{}) bool {
 
 // Add an element at the end of the list
 func (l *List) Add(elem interface{}) {
-	l.elems = append(l.elems, elem)
+	l.objects = append(l.objects, elem)
 }
 
 // Add elements at the end of the list
@@ -73,21 +73,21 @@ func (l *List) AddAll(elems []interface{}) {
 
 // Replace fromElem by toElem
 func (l *List) ReplaceAll(fromElem interface{}, toElem interface{}) {
-	for k, v := range l.elems {
+	for k, v := range l.objects {
 		if v == fromElem {
-			l.elems[k] = toElem
+			l.objects[k] = toElem
 		}
 	}
 }
 
 // Remove the first occurrence of an element from the arraylist
 func (l *List) RemoveFirst(elem interface{}) {
-	for i, val := range l.elems {
+	for i, val := range l.objects {
 		if val == elem {
 			// We are splitting around the element
-			newArray := l.elems[:i] // before the element
-			newArray = append(newArray, l.elems[i+1:]...) // after the element
-			l.elems = newArray
+			newArray := l.objects[:i]                       // before the element
+			newArray = append(newArray, l.objects[i+1:]...) // after the element
+			l.objects = newArray
 			return
 		}
 	}
@@ -100,9 +100,9 @@ func (l *List) RemoveAtIndex(index int) {
 		return
 	}
 	// We are splitting around the element
-	newArray := l.elems[:index] // before the element
-	newArray = append(newArray, l.elems[index+1:]...) // after the element
-	l.elems = newArray
+	newArray := l.objects[:index]                       // before the element
+	newArray = append(newArray, l.objects[index+1:]...) // after the element
+	l.objects = newArray
 
 }
 
@@ -118,7 +118,7 @@ func (l *List) subRemoveStarting(elem interface{}, start int) {
 		return
 	}
 	for i := start; i < l.Len(); i++ {
-		if l.elems[i] == elem {
+		if l.objects[i] == elem {
 			l.RemoveAtIndex(i)
 			l.subRemoveStarting(elem, i)
 		}
@@ -127,7 +127,7 @@ func (l *List) subRemoveStarting(elem interface{}, start int) {
 
 // Return the arraylist as an array
 func (l *List) ToArray() []interface{} {
-	return l.elems
+	return l.objects
 }
 
 // Compare two arraylist and return true if they are the same object or if they have the same size and every
@@ -140,8 +140,8 @@ func (l *List) Equals(o *List) bool {
 	if l.Len() != o.Len() {
 		return false
 	}
-	for k, _ := range l.elems {
-		if l.elems[k] != o.elems[k] {
+	for k, _ := range l.objects {
+		if l.objects[k] != o.objects[k] {
 			return false
 		}
 	}
