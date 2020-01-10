@@ -68,5 +68,5 @@ func main() {
 
 ## TODO
 
-- Update the method `(l *List) RemoveAll(elem interface{})`
 - Update folder _/examples_
+- Add other methods

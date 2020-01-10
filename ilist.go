@@ -71,6 +71,15 @@ func (l *List) AddAll(elems []interface{}) {
 	}
 }
 
+// Replace fromElem by toElem
+func (l *List) ReplaceAll(fromElem interface{}, toElem interface{}) {
+	for k, v := range l.elems {
+		if v == fromElem {
+			l.elems[k] = toElem
+		}
+	}
+}
+
 // Remove the first occurrence of an element from the arraylist
 func (l *List) RemoveFirst(elem interface{}) {
 	for i, val := range l.elems {

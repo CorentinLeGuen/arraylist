@@ -288,3 +288,21 @@ func TestList_OutOfBound(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestList_ReplaceAll(t *testing.T) {
+	l := New()
+	l.Add("A")
+	l.Add("C")
+	l.Add("D")
+	l.Add("A")
+	l.Add("C")
+	l.Add("B")
+	l.Add("A")
+	l.ReplaceAll("A", "X")
+	if l.Contains("A") {
+		t.Fail()
+	}
+	if !l.Contains("X") {
+		t.Fail()
+	}
+}
