@@ -1,0 +1,15 @@
+language: go
+
+go:
+  - 1.13.x
+
+script:
+  - GOOS=linux go build
+  - GOOS=darwin go build
+  - GOOS=freebsd go build
+  - GOOS=windows go build
+
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
+
+  after_success:
+    - bash <(curl -s https://codecov.io/bash)
