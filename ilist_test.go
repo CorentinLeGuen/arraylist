@@ -7,7 +7,7 @@ import (
 func TestNew(t *testing.T) {
 	t.Log("Simple new object")
 	l := New()
-	if l.elems == nil {
+	if l.elems == nil || l.Len() != 0 {
 		t.Fail()
 	}
 }
@@ -37,7 +37,9 @@ func TestList_Clone(t *testing.T) {
 	l.Add(1000)
 	l2 := l.Clone()
 	l.RemoveFirst(10)
-	if l.GetValue(1) != 100 || l2.GetValue(1) != 10 || l.Len() != 3 || l2.Len() != 4 {
+	l2.Add(1)
+	// We are checking if any modified values for any list is modified for the other list
+	if l.GetValue(1) != 100 || l2.GetValue(1) != 10 || l.Len() != 3 || l2.Len() != 5 {
 		t.Fail()
 	}
 }
@@ -214,6 +216,75 @@ func TestList_Equals(t *testing.T) {
 	l1.Add(3)
 	l2.Add(4)
 	if l1.Equals(l2) {
+		t.Fail()
+	}
+}
+
+func TestList_RemoveAll_With_OutOfBound(t *testing.T) {
+	l := New()
+	l.Add("A")
+	l.Add("B")
+	l.Add("C")
+	l.Add("D")
+	l.Add("B")
+	l.Add("C")
+	l.Add("A")
+	l.Add("E")
+	l.Add("A")
+	l.Add("A")
+	l.RemoveAll("A")
+	if l.Contains("A") {
+		t.Fail()
+	}
+	l.RemoveAll("D")
+	if l.Contains("D") {
+		t.Fail()
+	}
+	if l.Len() != 5 {
+		t.Fail()
+	}
+	l.RemoveAtIndex(-1)
+	l.RemoveAtIndex(l.Len())
+	if l.Len() != 5 {
+		t.Fail()
+	}
+}
+
+func TestList_RemoveAll_OnlyOneObject(t *testing.T) {
+	l := New()
+	l.Add("X")
+	l.Add("X")
+	l.Add("X")
+	l.Add("X")
+	l.Add("X")
+	l.Add("X")
+	l.RemoveAll("X")
+	if l.Len() != 0 {
+		t.Fail()
+	}
+	l.Add("Y")
+	l.RemoveAll("Y")
+	if l.Contains("Y") {
+		t.Fail()
+	}
+}
+
+func TestList_OutOfBound(t *testing.T) {
+	l := New()
+	l.Add(1)
+	l.Add("2")
+	l.Add(3)
+	if l.IndexOf("7") != -1 {
+		t.Fail()
+	}
+	if l.IndexOf(nil) != -1 {
+		t.Fail()
+	}
+	if l.GetValue(-1) != nil || l.GetValue(l.Len()) != nil {
+		t.Fail()
+	}
+	l.AddAll(nil)
+	if l.Len() != 3 {
 		t.Fail()
 	}
 }

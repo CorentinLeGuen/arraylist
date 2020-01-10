@@ -43,6 +43,9 @@ func (l *List) IndexOf(elem interface{}) int {
 
 // Return a value at a specific position
 func (l *List) GetValue(pos int) interface{} {
+	if pos < 0 || pos > l.Len() -1 {
+		return nil
+	}
 	return l.elems[pos]
 }
 
@@ -83,23 +86,33 @@ func (l *List) RemoveFirst(elem interface{}) {
 
 // Remove the element at the index position
 func (l *List) RemoveAtIndex(index int) {
-	for i, _ := range l.elems {
-		if i == index {
-			// We are splitting around the element
-			newArray := l.elems[:i] // before the element
-			newArray = append(newArray, l.elems[i+1:]...) // after the element
-			l.elems = newArray
-			return
-		}
+	// If the index is out of bound
+	if index < 0 || index > l.Len() -1 {
+		return
 	}
+	// We are splitting around the element
+	newArray := l.elems[:index] // before the element
+	newArray = append(newArray, l.elems[index+1:]...) // after the element
+	l.elems = newArray
+
 }
 
 // Remove all the occurrence of element from the arraylist
-// TODO : optimize because we are using RemoveFirst, we are reading multiple times the beginning of the arraylist
 func (l *List) RemoveAll(elem interface{}) {
 	// while the arraylist contains elem, we are removing the first occur
-	for l.Contains(elem) {
-		l.RemoveFirst(elem)
+	l.subRemoveStarting(elem, 0)
+}
+
+// This sub method is used to browse only one time the arraylist
+func (l *List) subRemoveStarting(elem interface{}, start int) {
+	if start == l.Len() {
+		return
+	}
+	for i := start; i < l.Len(); i++ {
+		if l.elems[i] == elem {
+			l.RemoveAtIndex(i)
+			l.subRemoveStarting(elem, i)
+		}
 	}
 }
 
