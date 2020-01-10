@@ -19,6 +19,7 @@ To create a new arraylist : `New() *List`
 | Len() int | Return the length of the arraylist |
 | Clear() | Empty the arraylist |
 | Clone() *List | Return a copy of the arraylist |
+| Sublist(fromRange int, toRange int) *List | Return the inclusive sublist [start, end] of an arraylist |
 | IndexOf(elem interface{}) int | Return the position of _elem_ in the arraylist |
 | GetValue(position int) interface{} | Return the value at the position _position_ |
 | Contains(elem interface{}) bool | Show if the value _elem_ is in the arraylist |
@@ -61,8 +62,3 @@ func main() {
 	fmt.Printf("%s\n", s.GetValue(2))           // "toto"
 }
 ```
-
-## TODO
-
-- Update folder _/examples_
-- Add other methods

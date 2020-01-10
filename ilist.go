@@ -31,6 +31,17 @@ func (l *List) Clone() *List {
 	return n
 }
 
+// Return the sub list between two ranges
+// With x the fromRange and y the toRange, we are sending [x,y] (full inclusive) sublist
+func (l *List) Sublist(fromRange int, toRange int) *List {
+	if fromRange > toRange || fromRange < 0 || toRange > l.Len() -1 {
+		return nil
+	}
+	nl := New()
+	nl.AddAll(l.objects[fromRange:toRange+1])
+	return nl
+}
+
 // Return the index of the first elem find in the arraylist or return -1
 func (l *List) IndexOf(elem interface{}) int {
 	for k, v := range l.objects {

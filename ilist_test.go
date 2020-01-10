@@ -311,3 +311,52 @@ func TestList_ReplaceAll(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestList_Sublist_With_OutOfBound(t *testing.T) {
+	t.Log("Test the out of bound of sublisting")
+	l := New()
+	l.Add(1)
+	l.Add(2)
+	l.Add(3)
+	l.Add(4)
+	l.Add(5)
+	l.Add(6)
+	l.Add(7)
+	l.Add(8)
+	l.Add(9)
+	if l.Sublist(-1, 5) != nil {
+		t.Fail()
+	}
+	if l.Sublist(2, 9) != nil {
+		t.Fail()
+	}
+	if l.Sublist(5, 2) != nil {
+		t.Fail()
+	}
+}
+
+func TestList_Sublist(t *testing.T) {
+	t.Log("Test the sublisting")
+	l := New()
+	l.Add(1)
+	l.Add(2)
+	l.Add(3)
+	l.Add(4)
+	l.Add(5)
+	l.Add(6)
+	l.Add(7)
+	l.Add(8)
+	l.Add(9)
+	if !l.Sublist(8, 8).Equals(&List{objects: []interface{}{9}}) {
+		t.Fail()
+	}
+	if !l.Sublist(0, 0).Equals(&List{objects: []interface{}{1}}) {
+		t.Fail()
+	}
+	if !l.Sublist(0, 8).Equals(l) {
+		t.Fail()
+	}
+	if !l.Sublist(2, 5).Equals(&List{objects: []interface{}{3, 4, 5, 6}}) {
+		t.Fail()
+	}
+}
