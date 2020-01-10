@@ -65,3 +65,8 @@ func main() {
 	fmt.Printf("%s\n", s.GetValue(2))           // "toto"
 }
 ```
+
+## TODO
+
+- Update the method `(l *List) RemoveAll(elem interface{})`
+- Update folder _/examples_
